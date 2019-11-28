@@ -18,77 +18,51 @@
     </js-module>
 
     <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
+        <config-file target="app/src/main/res/xml/config.xml" parent="/*">
             <feature name="CsZBar">
                 <param name="android-package" value="org.cloudsky.cordovaPlugins.ZBar"/>
             </feature>
         </config-file>
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <config-file target="app/src/main/AndroidManifest.xml" parent="application">
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
                 android:name="org.cloudsky.cordovaPlugins.ZBarScannerActivity"
                 android:screenOrientation="fullUser"
                 android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
         </config-file>
-        <config-file target="AndroidManifest.xml" parent="/manifest">
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/*">
             <uses-feature android:name="android.hardware.camera" />
             <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
             <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
             <uses-feature android:name="android.hardware.camera.front" android:required="false" />
             <uses-permission android:name="android.permission.CAMERA" />
         </config-file>
-        <config-file target="res/values/strings.xml" parent="/*">
+        <config-file target="app/src/main/res/values/strings.xml" parent="/*">
             <string name="csZbarScannerTitle">Scan QR Code</string>
             <string name="csZbarScannerInstructions">Please point your camera at the QR code.</string>
             <color name="csZbarScannerTextColor">#ffffff</color>
             <color name="csZbarScannerTextBackground">#88000000</color>
             <color name="csZbarScannerBackground">#000000</color>
         </config-file>
-
         <framework src="com.android.support:support-v4:23.1.0" />
-        <framework src="com.android.support:appcompat-v7:23.1.0" />
-
-        <!-- I changed from a source-file to lib-file. Seems to work on cordova-android 6 & 7. -->
-        <lib-file src="android/libs/zbar.jar"/>
-
-        <!-- changed source-file to resource-file and used target instead of target-dir (works better with cordova-android 7) -->
-        <resource-file src="android/libs/zbar.jar" target="libs/zbar.jar" />
-        <resource-file src="android/libs/armeabi/libiconv.so" target="libs/armeabi/libiconv.so" />
-        <resource-file src="android/libs/armeabi/libzbarjni.so" target="libs/armeabi/libzbarjni.so" />
-        <resource-file src="android/libs/armeabi-v7a/libiconv.so" target="libs/armeabi-v7a/libiconv.so" />
-        <resource-file src="android/libs/armeabi-v7a/libzbarjni.so" target="libs/armeabi-v7a/libzbarjni.so" />
-        <resource-file src="android/libs/arm64-v8a/libiconv.so" target="libs/arm64-v8a/libiconv.so" />
-        <resource-file src="android/libs/arm64-v8a/libzbarjni.so" target="libs/arm64-v8a/libzbarjni.so" />s
-        <resource-file src="android/libs/x86/libiconv.so" target="libs/x86/libiconv.so" />
-        <resource-file src="android/libs/x86/libzbarjni.so" target="libs/x86/libzbarjni.so" />
-
-        <!-- cordova-android 7 directives (hopefully ignored by cordova-android 6) -->
-        <resource-file src="android/libs/zbar.jar" target="jniLibs/zbar.jar" />
-        <resource-file src="android/libs/armeabi/libiconv.so" target="jniLibs/armeabi/libiconv.so" />
-        <resource-file src="android/libs/armeabi/libzbarjni.so" target="jniLibs/armeabi/libzbarjni.so" />
-        <resource-file src="android/libs/armeabi-v7a/libiconv.so" target="jniLibs/armeabi-v7a/libiconv.so" />
-        <resource-file src="android/libs/armeabi-v7a/libzbarjni.so" target="jniLibs/armeabi-v7a/libzbarjni.so" />
-        <resource-file src="android/libs/arm64-v8a/libiconv.so" target="jniLibs/arm64-v8a/libiconv.so" />
-        <resource-file src="android/libs/arm64-v8a/libzbarjni.so" target="jniLibs/arm64-v8a/libzbarjni.so" />s
-        <resource-file src="android/libs/x86/libiconv.so" target="jniLibs/x86/libiconv.so" />
-        <resource-file src="android/libs/x86/libzbarjni.so" target="jniLibs/x86/libzbarjni.so" />
-
-        <!-- For cordova-android 7.x -->
-        <resource-file src="android/ZBarcodeFormat.java" target="java/org/cloudsky/cordovaPlugins/ZBarcodeFormat.java" />
-        <resource-file src="android/ZBar.java" target="java/org/cloudsky/cordovaPlugins/ZBar.java" />
-        <resource-file src="android/ZBarScannerActivity.java" target="java/org/cloudsky/cordovaPlugins/ZBarScannerActivity.java" />
-
-        <!-- For cordova-android 6.x -->
-        <resource-file src="android/ZBarcodeFormat.java" target="org/cloudsky/cordovaPlugins/ZBarcodeFormat.java" />
-        <resource-file src="android/ZBar.java" target="org/cloudsky/cordovaPlugins/ZBar.java" />
-        <resource-file src="android/ZBarScannerActivity.java" target="org/cloudsky/cordovaPlugins/ZBarScannerActivity.java" />
-
         <resource-file src="android/res/layout/cszbarscanner.xml" target="res/layout/cszbarscanner.xml" />
-        <resource-file src="android/res/drawable/camera_flash.png" target="res/drawable/camera_flash.png"/>
-        <resource-file src="android/res/drawable/camera_flash.png" target="res/drawable-hdpi/camera_flash.png"/>
-        <resource-file src="android/res/drawable/camera_flash.png" target="res/drawable-ldpi/camera_flash.png"/>
-        <resource-file src="android/res/drawable/camera_flash.png" target="res/drawable-mdpi/camera_flash.png"/>
-        <resource-file src="android/res/drawable/camera_flash.png" target="res/drawable-xhdpi/camera_flash.png"/>
-        <resource-file src="android/res/drawable/camera_flash.png" target="res/drawable-xxhdpi/camera_flash.png"/>
+        <source-file src="android/ZBarcodeFormat.java" target-dir="app/src/main/java/org/cloudsky/cordovaPlugins" />
+        <source-file src="android/ZBar.java" target-dir="app/src/main/java/org/cloudsky/cordovaPlugins" />
+        <source-file src="android/ZBarScannerActivity.java" target-dir="app/src/main/java/org/cloudsky/cordovaPlugins" />
+        <source-file src="android/libs/zbar.jar" target-dir="app/libs" />
+        <source-file src="android/libs/armeabi/libiconv.so" target-dir="app/src/main/jniLibs/armeabi" />
+        <source-file src="android/libs/armeabi/libzbarjni.so" target-dir="app/src/main/jniLibs/armeabi" />
+        <source-file src="android/libs/armeabi-v7a/libiconv.so" target-dir="app/src/main/jniLibs/armeabi-v7a" />
+        <source-file src="android/libs/armeabi-v7a/libzbarjni.so" target-dir="app/src/main/jniLibs/armeabi-v7a" />
+        <source-file src="android/libs/arm64-v8a/libiconv.so" target-dir="app/src/main/jniLibs/arm64-v8a" />
+        <source-file src="android/libs/arm64-v8a/libzbarjni.so" target-dir="app/src/main/jniLibs/arm64-v8a" />
+        <source-file src="android/libs/x86/libiconv.so" target-dir="app/src/main/jniLibs/x86" />
+        <source-file src="android/libs/x86/libzbarjni.so" target-dir="app/src/main/jniLibs/x86" />
+        <source-file src="android/res/drawable/camera_flash.png" target-dir="app/src/main/res/drawable"/>
+        <source-file src="android/res/drawable/camera_flash.png" target-dir="app/src/main/res/drawable-hdpi"/>
+        <source-file src="android/res/drawable/camera_flash.png" target-dir="app/src/main/res/drawable-ldpi"/>
+        <source-file src="android/res/drawable/camera_flash.png" target-dir="app/src/main/res/drawable-mdpi"/>
+        <source-file src="android/res/drawable/camera_flash.png" target-dir="app/src/main/res/drawable-xhdpi"/>
+        <source-file src="android/res/drawable/camera_flash.png" target-dir="app/src/main/res/drawable-xxhdpi"/>
     </platform>
 
     <platform name="ios">
